@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "220810485790",
+    "firebase_url": "https://police-29.firebaseio.com",
+    "project_id": "police-29",
+    "storage_bucket": "police-29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220810485790:android:10125c304e7fe24ccbce0f",
+        "android_client_info": {
+          "package_name": "com.example.noise_levels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220810485790-j9cti2csu8re1a23j7ku2r2escm41b2n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.noise_levels",
+            "certificate_hash": "173743680e5e215a478747e75895d8e588bc32fd"
+          }
+        },
+        {
+          "client_id": "220810485790-jlvp4kba4a4nr70kiah62ta2lj35i25j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_sEOW0YvXUAANbzFA5SM1y7dMLTT69-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220810485790-jlvp4kba4a4nr70kiah62ta2lj35i25j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,6 +5,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
@@ -42,8 +44,10 @@ class TakePictureScreen extends StatefulWidget {
 }
 
 class TakePictureScreenState extends State<TakePictureScreen> {
+  int _counter = 0;
   CameraController _controller;
   Future<void> _initializeControllerFuture;
+  FirebaseStorage _storage = FirebaseStorage.instance;
   Timer timer;
 
   @override
@@ -60,7 +64,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _controller.initialize();
-    timer = Timer.periodic(Duration(seconds: 500), (Timer t) => _takePicture());
+    timer = Timer.periodic(
+        Duration(seconds: 5), (Timer t) => _saveTakenPhotoToFirebase());
   }
 
   @override
@@ -78,40 +83,74 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       // Wait until the controller is initialized before displaying the
       // camera preview. Use a FutureBuilder to display a loading spinner
       // until the controller has finished initializing.
-      body: FutureBuilder<void>(
-        future: _initializeControllerFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            // If the Future is complete, display the preview.
-            return CameraPreview(_controller);
-          } else {
-            // Otherwise, display a loading indicator.
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.camera_alt),
-        // Provide an onPressed callback.
-        onPressed: () async {
-          _takePicture();
-        },
+      body: new Container(
+        child: new Center(
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              new Text('$_counter', style: new TextStyle(fontSize: 60.0)),
+
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  void _takePicture() async {
+//      FutureBuilder<void>(
+//        future: _initializeControllerFuture,
+//        builder: (context, snapshot) {
+//          if (snapshot.connectionState == ConnectionState.done) {
+//            // If the Future is complete, display the preview.
+//            return CameraPreview(_controller);
+//          } else {
+//            // Otherwise, display a loading indicator.
+//            return Center(child: CircularProgressIndicator());
+//          }
+//        },
+//      ),
+//      floatingActionButton: FloatingActionButton(
+//        child: Icon(Icons.camera_alt),
+//        // Provide an onPressed callback.
+//        onPressed: () async {
+////          _takePicture();
+////          await _saveTakenPhotoToFirebase();
+//        },
+//      ),
+
+  void _saveTakenPhotoToFirebase() async {
+    //return the path with the taken photo on a temporary file or '' if it is an error
+    String imagePath = await this._returnTakenPicturePath();
+    if (imagePath != '') {
+      File takenImage = File(imagePath);
+
+      //Get the file from the image picker and store it
+      //File image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+      //Create a reference to the location you want to upload to in firebase
+      StorageReference reference = _storage.ref().child("${DateTime.now()}");
+
+      //Upload the file to firebase
+
+      await reference.putFile(takenImage);
+
+      setState(() {
+        _counter += 1;
+      });
+    } else {
+      print("Invalid path");
+    }
+  }
+
+  Future<String> _returnTakenPicturePath() async {
     // Take the Picture in a try / catch block. If anything goes wrong,
     // catch the error.
     try {
       // Ensure that the camera is initialized.
-
       //DOCS
       //Initializes the camera on the device.
       //Throws a CameraException if the initialization fails.
-
       await _initializeControllerFuture;
-
       // Construct the path where the image should be saved using the
       // pattern package.
       final path = join(
@@ -120,37 +159,14 @@ class TakePictureScreenState extends State<TakePictureScreen> {
         (await getTemporaryDirectory()).path,
         '${DateTime.now()}.png',
       );
-
       // Attempt to take a picture and log where it's been saved.
       await _controller.takePicture(path);
 
-      // If the picture was taken, display it on a new screen.
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => DisplayPictureScreen(imagePath: path),
-        ),
-      );
+      return path;
     } catch (e) {
       // If an error occurs, log the error to the console.
       print(e);
+      return '';
     }
-  }
-}
-
-// A widget that displays the picture taken by the user.
-class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
-
-  const DisplayPictureScreen({Key key, this.imagePath}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
-      body: Image.file(File(imagePath)),
-    );
   }
 }
