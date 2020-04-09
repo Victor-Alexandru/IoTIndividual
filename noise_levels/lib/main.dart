@@ -89,10 +89,16 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               new Text('$_counter', style: new TextStyle(fontSize: 60.0)),
-
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.stop),
+        // Provide an onPressed callback.
+        onPressed: () async {
+          timer.cancel();
+        },
       ),
     );
   }
@@ -128,7 +134,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       //File image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
       //Create a reference to the location you want to upload to in firebase
-      StorageReference reference = _storage.ref().child("${DateTime.now()}");
+      StorageReference reference =
+          _storage.ref().child("police29/${DateTime.now()}");
 
       //Upload the file to firebase
 

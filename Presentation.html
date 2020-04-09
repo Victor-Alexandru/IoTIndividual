@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+</head>
+
+<body>
+       <div class="container">
+              <div class="row">
+                     <div class="h3">Overview</div>
+                     <div class="row p-3">
+                            The police29 project helps the user capture photos every five seconds without opening the
+                            camera ,and without pushing any button.
+                            The photos are updated to the cloud (firebase storage) and are accesed by a web application
+                            that display the last 4 photos taken.
+                     </div>
+              </div>
+              <hr>
+              <div class="row">
+                     <div class="h3">Screenshots</div>
+                     <div class="row p-3">
+
+                     </div>
+              </div>
+              <hr>
+              <div class="h3">Schematics Plan</div>
+              <div class="row p-3">
+                     1.Access the camera from the device
+
+              </div>
+              <div class=" row">
+                     <img src="img1.jpg" width="200" height="200">
+              </div>
+
+              <hr>
+              <div class="row">
+                     <div class="h3">Pre-requisits</div>
+                     <div class="row p-3">
+                            <div class="row p-4">
+                                   List of needed components :
+                            </div>
+                            <br>
+                            <div class="row p-4">
+                                   <ul class="list-group">
+                                          <li class="list-group-item">
+                                                 1.Smartphone (either Ios or Android (with sdk+21) - the app is non
+                                                 native made in flutter)
+                                          </li>
+                                          <li class="list-group-item">
+                                                 2.Browser - to display the web page
+                                          </li>
+                                   </ul>
+                            </div>
+                     </div>
+
+              </div>
+              <hr>
+
+              <div class="row">
+                     <div class="h3">Setup and Build </div>
+                     <ul>
+                            <li class="row">
+                                   1. Create a Firebase project on the console here https://firebase.google.com/
+                            </li>
+                            <li class="row">
+                                   2.Add an android app to your project and setup firebase to the flutter application
+                                   (download google.json file)
+                            </li>
+                            <li class="row">
+                                   3.Use the folowing plugins in the flutter app :
+                                   camera,
+                                   path_provider,
+                                   path,
+                                   firebase_storage
+                            </li>
+                            <li class="row">
+                                   4.Create a web app and add the config keys to get access to the firebase storage
+                                   <div>
+                                          IMPORTANT STEP : DOWNLOAD A GENERATE KEY TO HAVE READ ACCESS TO THE STORAGE
+                                   </div>
+                            </li>
+                            <li>
+                                   Firebase rules set to default :
+                                   <pre>
+                                          rules_version = '2';
+                                          service firebase.storage {
+                                          match /b/{bucket}/o {
+                                          match /{allPaths=**} {
+                                          allow read, write;
+                                                 }
+                                           }
+                                          }
+
+                                   </pre>
+
+                            </li>
+
+                     </ul>
+
+              </div>
+       </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+       integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+
+</html>
