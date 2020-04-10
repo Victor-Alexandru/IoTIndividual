@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+       <style>
+              input {
+                     margin: 0px;
+                     padding: 0px;
+                     height: 30px;
+              }
+       </style>
+</head>
+
+<body>
+       <div class="container mt-2">
+              <div class="row">
+                     <div class="col-sm p-1">
+                            <div class="row">
+                                   <div class="form-group">
+                                          <label for="moneyGiven">Money Romania Lei</label>
+                                          <input type="number" id="moneyGiven">
+                                   </div>
+                            </div>
+
+                     </div>
+                     <div class="col-sm p-1">
+                            <div class="row">
+                                   <div class="form-group">
+                                          <label for="moneyGivenAnglia">Money Anglia Lire</label>
+                                          <input type="number" id="moneyGivenAnglia">
+                                   </div>
+                            </div>
+                     </div>
+                     <div class="col-sm p-1">
+                            <div class="row">
+                                   <div class="form-group">
+                                          <label for="moneyGivenGermania">Money Germania Euro</label>
+                                          <input type="number" id="moneyGivenGermania">
+                                   </div>
+                            </div>
+                     </div>
+
+              </div>
+              <div class="row">
+
+                     <button id="calcBtn" class="btn btn-primary mb-2">Calculate</button>
+              </div>
+
+       </div>
+       </div>
+       <div class="row">
+              <div class="col-sm p-1">
+                     <div class="row h3 m-3">
+                            Tara
+                     </div>
+                     <div class="row h3 m-3">
+                            Salar
+                     </div>
+                     <div class="row h3 m-3">
+                            Chirie
+                     </div>
+                     <div class="row h3 m-3">
+                            Mancare
+                     </div>
+                     <div class="row h3 m-3">
+                            Utilitati
+                     </div>
+                     <div class="row h3 m-3">
+                            Neprevazute
+                     </div>
+                     <div class="row h3 m-4">
+                            ------
+                     </div>
+                     <div class="row h3 m-4">
+                            Rest Ramas
+                     </div>
+              </div>
+              <div class="col-sm p-1">
+                     <div class="row h3 m-3">
+                            Romania (Lei)
+                     </div>
+                     <div class="row h3 m-3" id="salarRo">
+                            -
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="chirieRomania">
+                            </div>
+                     </div>
+
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="mancareRomania">
+                            </div>
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="utilitatiRomania">
+                            </div>
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="neprevazuteRomania">
+                            </div>
+                     </div>
+                     <div class="row h5 m-3" id="restRomania">
+                            -
+                     </div>
+
+              </div>
+              <div class="col-sm p-1">
+                     <div class="row h3 m-3">
+                            Anglia (lire sterline)
+                     </div>
+                     <div class="row h3 m-3" id="salarAnglia">
+                            -
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="chirieAnglia">
+                            </div>
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="mancareAnglia">
+                            </div>
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="utilitatiAnglia">
+                            </div>
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="neprevazuteAnglia">
+                            </div>
+                     </div>
+                     <div class="row h5 m-3" id="restAnglia">
+                            -
+                     </div>
+              </div>
+              <div class="col-sm p-1">
+                     <div class="row h3 m-3">
+                            Germania (euro)
+                     </div>
+                     <div class="row h3 m-3" id="salarGermania">
+                            -
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="chirieGermania">
+                            </div>
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="mancareGermania">
+                            </div>
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="utilitatiGermania">
+                            </div>
+                     </div>
+                     <div class="row h3 m-1">
+                            <div class="form-group">
+                                   <input type="number" id="neprevazuteGermania">
+                            </div>
+                     </div>
+                     <div class="row h5 m-3" id="restGermania">
+                            -
+                     </div>
+
+              </div>
+       </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+       integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+<script>
+       function LeiEuro(x) {
+              return (x / 4.83).toFixed(2);
+       }
+
+       function EuroLei(x) {
+              return (x * 4.83).toFixed(2);
+       }
+
+       function EuroLire(x) {
+              return (x / 1.14).toFixed(2);
+       }
+
+       function LireEuro(x) {
+              return (x * 1.14).toFixed(2);
+       }
+
+
+       function LeiLire(x) {
+              return (x / 5.51).toFixed(2);
+       }
+
+       function LireLei(x) {
+              return (x * 5.51).toFixed(2);
+       }
+
+
+
+       $("#calcBtn").click(() => {
+              var moneyGiven = $("#moneyGiven").val();
+              var moneyGivenAnglia = $("#moneyGivenAnglia").val();
+              var moneyGivenGermania = $("#moneyGivenGermania").val();
+
+              var salarRo = $("#salarRo");
+              var salarAnglia = $("#salarAnglia");
+              var salarGermania = $("#salarGermania");
+
+              var chirieRo = $("#chirieRomania").val();
+              var chirieAnglia = $("#chirieAnglia").val();
+              var chirieGermania = $("#chirieGermania").val();
+
+
+              var mancareRo = $("#mancareRomania").val();
+              var mancareAnglia = $("#mancarenglia").val();
+              var mancareGermania = $("#mancareGermania").val();
+
+
+              var utilitatiRo = $("#utilitatiRomania").val();
+              var utilitatiAnglia = $("#utilitatiAnglia").val();
+              var utilitatiGermania = $("#utilitatiGermania").val();
+
+              var neprevazuteRo = $("#neprevazuteRomania").val();
+              var neprevazuteAnglia = $("#neprevazuteAnglia").val();
+              var neprevazuteGermania = $("#neprevazuteGermania").val();
+
+              var restRo = $("#restRomania");
+              var restAnglia = $("#restAnglia");
+              var restGermania = $("#restGermania");
+
+              salarRo.text(moneyGiven);
+              salarAnglia.text(moneyGivenAnglia);
+              salarGermania.text(moneyGivenGermania);
+
+              var salarLei = moneyGiven;
+              var salarLire = moneyGivenAnglia;
+              var salarEuro = moneyGivenGermania;
+
+              if (chirieRo) {
+                     salarLei = salarLei - chirieRo
+              }
+              if (utilitatiRo) {
+                     salarLei = salarLei - utilitatiRo
+              }
+              if (neprevazuteRo) {
+                     salarLei = salarLei - neprevazuteRo
+              }
+              if (mancareRo) {
+                     salarLei = salarLei - mancareRo
+              }
+              rezRo = (salarLei + ' lei - ' + LeiLire(salarLei) + ' lire - ' + LeiEuro(salarLei) +
+                     ' euro')
+              restRo.text(rezRo)
+
+
+              if (chirieAnglia) {
+                     salarLire = salarLire - chirieAnglia
+              }
+              if (utilitatiAnglia) {
+                     salarLire = salarLire - utilitatiAnglia
+              }
+              if (neprevazuteAnglia) {
+                     salarLire = salarLire - neprevazuteAnglia
+              }
+              if (mancareAnglia) {
+                     salarLire = salarLire - mancareAnglia
+              }
+
+              rezAnglia = (LireLei(salarLire) + ' lei - ' + salarLire + ' lire - ' + LireEuro(
+                            salarLire) +
+                     ' euro')
+              restAnglia.text(rezAnglia)
+
+
+
+              if (chirieGermania) {
+                     salarEuro = salarEuro - chirieGermania
+              }
+              if (utilitatiGermania) {
+                     salarEuro = salarEuro - utilitatiGermania
+              }
+              if (neprevazuteGermania) {
+                     salarEuro = salarEuro - neprevazuteGermania
+              }
+              if (mancareGermania) {
+                     salarEuro = salarEuro - mancareGermania
+              }
+              rezGermania = (EuroLei(salarEuro) + ' lei - ' + EuroLire(salarEuro) + ' lire - ' +
+                     salarEuro +
+                     ' euro')
+              restGermania.text(rezGermania)
+
+
+
+       })
+</script>
+
+</html>
